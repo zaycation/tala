@@ -1,5 +1,13 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import styles from "../styles/explore.styles"; // make sure path matches your structure
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  useColorScheme,
+} from "react-native";
+import * as colors from "../theme/colors";
+import getStyles from "../styles/explore.styles";
 
 const trending = [
   {
@@ -40,9 +48,12 @@ const quickFilters = [
 ];
 
 export default function ExploreScreen() {
+  const scheme = useColorScheme(); // 'light' | 'dark'
+  const theme = scheme === "dark" ? colors.dark : colors.light;
+  const styles = getStyles(theme);
+
   return (
     <ScrollView style={styles.container}>
-      {/* Header */}
       <Text style={styles.header}>Hey, Isaiah 👋</Text>
       <Text style={styles.subHeader}>Ready for your next adventure?</Text>
 
