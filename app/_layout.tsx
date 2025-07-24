@@ -1,8 +1,10 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
+import { useState } from "react";
 import { useColorScheme } from "react-native";
 import * as colors from "../theme/colors";
+import LoginScreen from "./login";
 
 const ICONS: Record<string, string> = {
   index: "compass-outline",
@@ -14,8 +16,17 @@ export default function AppLayout() {
   const [fontsLoaded] = useFonts({
     Inter: require("../assets/fonts/InterVariable.ttf"),
   });
-  const scheme = useColorScheme(); // 'light' | 'dark'
+
+  const scheme = useColorScheme();
   const theme = scheme === "dark" ? colors.dark : colors.light;
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  if (!fontsLoaded) return null;
+
+  if (!loggedIn) {
+    return <LoginScreen onLogin={() => setLoggedIn(true)} />;
+  }
 
   if (!fontsLoaded) return null;
 
@@ -28,7 +39,7 @@ export default function AppLayout() {
         tabBarStyle: {
           paddingBottom: 5,
           height: 60,
-          backgroundColor: theme.CARD, // << this is now dynamic!
+          backgroundColor: theme.CARD,
           borderTopColor: theme.CHIP_BORDER,
         },
         tabBarLabelStyle: {
