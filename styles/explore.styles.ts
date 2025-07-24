@@ -44,16 +44,23 @@ export default (theme: typeof import("../theme/colors").light) =>
       fontFamily: "Inter",
     },
     card: {
-      width: 220,
-      marginRight: 18,
-      borderRadius: 22,
+      borderRadius: 20,
       backgroundColor: theme.CARD,
+      marginRight: 16,
+      marginBottom: 18,
       overflow: "hidden",
+      width: 180,
+      height: 130,
+      shadowColor: "#000",
+      shadowOpacity: 0.09,
+      shadowRadius: 8,
+      shadowOffset: { width: 0, height: 3 },
       elevation: 2,
     },
-    cardImage: {
-      height: 120,
+    cardImg: {
       width: "100%",
+      height: 80,
+      resizeMode: "cover",
     },
     cardTitle: {
       fontSize: 18,

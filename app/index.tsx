@@ -2,7 +2,6 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   ScrollView,
   Image,
   TouchableOpacity,
@@ -110,7 +109,7 @@ export default function ExploreScreen() {
         >
           {trending.map((dest, idx) => (
             <View key={idx} style={styles.card}>
-              <Image source={{ uri: dest.image }} style={styles.cardImage} />
+              <Image source={{ uri: dest.image }} style={styles.cardImg} />
               <View style={{ padding: 12 }}>
                 <Text style={styles.cardTitle}>{dest.name}</Text>
                 <Text style={styles.cardDesc}>{dest.desc}</Text>

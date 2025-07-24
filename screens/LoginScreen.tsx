@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, useColorScheme } from "react-native";
-import * as colors from "../theme/colors";
+import { Text, TouchableOpacity, useColorScheme, View } from "react-native";
 import getStyles from "../styles/login.styles";
+import * as colors from "../theme/colors";
 
 type LoginScreenProps = {
   onLogin: () => void;

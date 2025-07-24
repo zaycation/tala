@@ -1,10 +1,10 @@
-import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
+import { Tabs } from "expo-router";
 import { useState } from "react";
 import { useColorScheme } from "react-native";
 import * as colors from "../theme/colors";
-import LoginScreen from "./login";
+import LoginScreen from "../screens/LoginScreen"; // or ../screens/LoginScreen
 
 const ICONS: Record<string, string> = {
   index: "compass-outline",
