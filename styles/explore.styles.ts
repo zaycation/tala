@@ -155,4 +155,20 @@ export default (theme: typeof import("../theme/colors").light) =>
       fontSize: 14,
       fontFamily: "Inter",
     },
+    searchBox: {
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: theme.CARD,
+      borderRadius: 14,
+      paddingVertical: 12,
+      paddingHorizontal: 14,
+      marginBottom: 16,
+      marginTop: 6,
+    },
+    searchInput: {
+      flex: 1,
+      fontSize: 16,
+      color: theme.TEXT,
+      fontFamily: "Inter",
+    },
   });

@@ -1,78 +1,68 @@
 import { StyleSheet } from "react-native";
-import * as colors from "../theme/colors";
-import * as typography from "../theme/typography";
-import * as spacing from "../theme/spacing";
 
-export default StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.BACKGROUND,
-    paddingTop: 48,
-    paddingHorizontal: spacing.PADDING,
-    alignItems: "center",
-  },
-  avatar: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
-    backgroundColor: colors.CHIP_BG,
-    marginBottom: 16,
-    marginTop: 12,
-  },
-  name: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: colors.TEXT,
-    marginBottom: 6,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  email: {
-    fontSize: 15,
-    color: colors.SUBTEXT,
-    marginBottom: 20,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  sectionTitle: {
-    fontSize: 17,
-    fontWeight: "700",
-    color: colors.ACCENT,
-    alignSelf: "flex-start",
-    marginVertical: 16,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  card: {
-    width: "100%",
-    backgroundColor: colors.CARD,
-    borderRadius: 16,
-    padding: 18,
-    marginBottom: 14,
-    elevation: 1,
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: colors.TEXT,
-    fontFamily: typography.FONT_FAMILY,
-    marginBottom: 6,
-  },
-  cardSubtitle: {
-    fontSize: 14,
-    color: colors.SUBTEXT,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  logoutBtn: {
-    backgroundColor: colors.DANGER,
-    borderRadius: 16,
-    paddingVertical: 14,
-    alignItems: "center",
-    marginTop: 28,
-    width: "100%",
-  },
-  logoutText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
-    fontFamily: typography.FONT_FAMILY,
-    letterSpacing: 0.4,
-  },
-});
+export default (theme: typeof import("../theme/colors").light) =>
+  StyleSheet.create({
+    container: {
+      paddingHorizontal: 18,
+      paddingTop: 28, // Less padding here, since SafeAreaView handles the notch!
+      flexGrow: 1,
+    },
+
+    header: {
+      fontSize: 26,
+      fontWeight: "700",
+      color: theme.TEXT,
+      fontFamily: "Inter",
+      marginBottom: 8,
+    },
+    subHeader: {
+      fontSize: 16,
+      color: theme.SUBTEXT,
+      fontFamily: "Inter",
+      marginBottom: 18,
+    },
+    card: {
+      backgroundColor: theme.CARD,
+      borderRadius: 18,
+      padding: 18,
+      marginBottom: 16,
+      shadowColor: "#000",
+      shadowOpacity: 0.06,
+      shadowRadius: 8,
+      elevation: 1,
+    },
+    cardTitle: {
+      fontSize: 17,
+      fontWeight: "600",
+      color: theme.ACCENT,
+      fontFamily: "Inter",
+      marginBottom: 3,
+    },
+    cardText: {
+      fontSize: 14,
+      color: theme.TEXT,
+      fontFamily: "Inter",
+    },
+    sectionTitle: {
+      fontSize: 16,
+      color: theme.SUBTEXT,
+      fontWeight: "600",
+      fontFamily: "Inter",
+      marginVertical: 8,
+    },
+    settingsBtn: {
+      backgroundColor: theme.CARD,
+      borderRadius: 16,
+      padding: 12,
+      alignItems: "center",
+      marginTop: 12,
+      borderWidth: 1,
+      borderColor: theme.CHIP_BORDER,
+    },
+    settingsBtnText: {
+      color: theme.ACCENT,
+      fontFamily: "Inter",
+      fontWeight: "700",
+      fontSize: 15,
+    },
+  });

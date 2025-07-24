@@ -1,27 +1,42 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import styles from "../styles/profile.styles";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  useColorScheme,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import * as colors from "../theme/colors";
+import getStyles from "../styles/plan.styles";
 
-export default function ProfileScreen() {
+export default function PlanScreen() {
+  const scheme = useColorScheme();
+  const theme = scheme === "dark" ? colors.dark : colors.light;
+  const styles = getStyles(theme);
+
+  // Example data
+  const trips = [
+    { name: "Kyoto, Japan", desc: "Cherry Blossom Trip • Mar 24 - Mar 30" },
+    { name: "Oaxaca, Mexico", desc: "Day of the Dead • Nov 1 - Nov 5" },
+  ];
+
   return (
-    <View style={styles.container}>
-      {/* Avatar */}
-      <View style={styles.avatar}>
-        {/* Placeholder for user avatar, or use <Image source={{ uri: ... }} style={styles.avatar} /> */}
-      </View>
-      <Text style={styles.name}>Isaiah Thomas</Text>
-      <Text style={styles.email}>zaycation@example.com</Text>
-
-      {/* Saved Trips (example card) */}
-      <Text style={styles.sectionTitle}>Saved Trips</Text>
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Italy, May 2025</Text>
-        <Text style={styles.cardSubtitle}>Rome, Florence, Venice</Text>
-      </View>
-
-      {/* Logout Button */}
-      <TouchableOpacity style={styles.logoutBtn}>
-        <Text style={styles.logoutText}>Log Out</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: theme.BACKGROUND }}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>Your Plans</Text>
+        <Text style={styles.subTitle}>
+          Manage, plan, or create your next adventure.
+        </Text>
+        {trips.map((trip, idx) => (
+          <View key={idx} style={styles.card}>
+            <Text style={styles.cardTitle}>{trip.name}</Text>
+            <Text style={styles.cardText}>{trip.desc}</Text>
+          </View>
+        ))}
+        <TouchableOpacity style={styles.aiButton}>
+          <Text style={styles.aiButtonText}>+ Start New AI Trip Plan</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

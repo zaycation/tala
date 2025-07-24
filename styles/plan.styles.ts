@@ -1,64 +1,60 @@
 import { StyleSheet } from "react-native";
-import * as colors from "../theme/colors";
-import * as typography from "../theme/typography";
-import * as spacing from "../theme/spacing";
 
-export default StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.BACKGROUND,
-    paddingTop: 48,
-    paddingHorizontal: spacing.PADDING,
-  },
-  header: {
-    fontSize: typography.FONT_SIZE_HEADER,
-    fontWeight: "700",
-    color: colors.TEXT,
-    marginBottom: 6,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  subHeader: {
-    fontSize: typography.FONT_SIZE_BODY,
-    color: colors.SUBTEXT,
-    marginBottom: 18,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  inputCard: {
-    backgroundColor: colors.CARD,
-    borderRadius: spacing.RADIUS,
-    padding: 18,
-    marginBottom: 18,
-    elevation: 1,
-  },
-  label: {
-    fontSize: 14,
-    color: colors.SUBTEXT,
-    marginBottom: 4,
-    fontFamily: typography.FONT_FAMILY,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: colors.CHIP_BORDER,
-    borderRadius: 10,
-    padding: 10,
-    fontSize: 16,
-    fontFamily: typography.FONT_FAMILY,
-    backgroundColor: "#fff",
-    marginBottom: 8,
-    color: colors.TEXT,
-  },
-  ctaButton: {
-    backgroundColor: colors.ACCENT,
-    borderRadius: 16,
-    paddingVertical: 14,
-    alignItems: "center",
-    marginTop: 24,
-  },
-  ctaText: {
-    color: "#fff",
-    fontSize: 17,
-    fontWeight: "700",
-    fontFamily: typography.FONT_FAMILY,
-    letterSpacing: 0.4,
-  },
-});
+export default (theme: typeof import("../theme/colors").light) =>
+  StyleSheet.create({
+    container: {
+      paddingHorizontal: 18,
+      paddingTop: 28, // Less padding here, since SafeAreaView handles the notch!
+      flexGrow: 1,
+    },
+
+    title: {
+      fontSize: 26,
+      fontWeight: "700",
+      color: theme.TEXT,
+      fontFamily: "Inter",
+      marginBottom: 8,
+    },
+    subTitle: {
+      fontSize: 16,
+      color: theme.SUBTEXT,
+      fontFamily: "Inter",
+      marginBottom: 18,
+    },
+    card: {
+      backgroundColor: theme.CARD,
+      borderRadius: 18,
+      padding: 20,
+      marginBottom: 20,
+      shadowColor: "#000",
+      shadowOpacity: 0.08,
+      shadowRadius: 10,
+      elevation: 1,
+    },
+    cardTitle: {
+      fontSize: 18,
+      fontWeight: "600",
+      color: theme.ACCENT,
+      fontFamily: "Inter",
+      marginBottom: 4,
+    },
+    cardText: {
+      fontSize: 15,
+      color: theme.TEXT,
+      fontFamily: "Inter",
+      marginBottom: 2,
+    },
+    aiButton: {
+      marginTop: 18,
+      backgroundColor: theme.ACCENT,
+      borderRadius: 100,
+      alignItems: "center",
+      paddingVertical: 12,
+    },
+    aiButtonText: {
+      color: "#fff",
+      fontWeight: "700",
+      fontFamily: "Inter",
+      fontSize: 16,
+    },
+  });
