@@ -52,20 +52,19 @@ const quickFilters = [
 ];
 
 export default function ExploreScreen() {
-  const scheme = useColorScheme(); // 'light' | 'dark'
+  const scheme = useColorScheme();
   const theme = scheme === "dark" ? colors.dark : colors.light;
   const styles = getStyles(theme);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.BACKGROUND }}>
       <ScrollView contentContainerStyle={styles.container}>
-        {/* ...Greeting */}
         <View style={styles.searchBox}>
           <Ionicons
             name="search"
-            size={20}
+            size={22}
             color={theme.SUBTEXT}
-            style={{ marginRight: 8 }}
+            style={{ marginRight: 10 }}
           />
           <TextInput
             style={styles.searchInput}

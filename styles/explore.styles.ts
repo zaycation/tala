@@ -5,7 +5,7 @@ export default (theme: typeof import("../theme/colors").light) =>
     container: {
       flex: 1,
       backgroundColor: theme.BACKGROUND,
-      paddingTop: 48,
+      paddingTop: 16,
       paddingHorizontal: 18,
     },
     header: {
@@ -159,16 +159,25 @@ export default (theme: typeof import("../theme/colors").light) =>
       flexDirection: "row",
       alignItems: "center",
       backgroundColor: theme.CARD,
-      borderRadius: 14,
-      paddingVertical: 12,
-      paddingHorizontal: 14,
-      marginBottom: 16,
-      marginTop: 6,
+      borderRadius: 28, // Very rounded!
+      paddingVertical: 16,
+      paddingHorizontal: 18,
+      marginBottom: 18,
+      marginTop: 10,
+      shadowColor: "#000",
+      shadowOpacity: 0.1, // Subtle shadow
+      shadowOffset: { width: 0, height: 3 },
+      shadowRadius: 12,
+      elevation: 4, // Android shadow
+      borderColor: theme.CHIP_BORDER,
     },
     searchInput: {
       flex: 1,
-      fontSize: 16,
+      fontSize: 17,
       color: theme.TEXT,
       fontFamily: "Inter",
+      fontWeight: "600",
+      paddingVertical: 0, // For vertical centering
+      backgroundColor: "transparent",
     },
   });
