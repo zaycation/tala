@@ -1,6 +1,12 @@
-import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+import styles from '../styles/explore.styles';
 
-const ACCENT_COLOR = "#6C63FF";
 
 const destinations = [
   {
@@ -23,16 +29,42 @@ const destinations = [
   },
 ];
 
+const categories = [
+  { emoji: "🔥", name: "Trending" },
+  { emoji: "🌮", name: "Foodie" },
+  { emoji: "🎶", name: "Culture" },
+  { emoji: "🧘‍♂️", name: "Chill" },
+  { emoji: "🌍", name: "Hidden Gems" },
+];
+
 export default function ExploreScreen() {
   return (
     <ScrollView style={styles.container}>
+      {/* Header */}
       <Text style={styles.header}>Hey, Isaiah 👋</Text>
       <Text style={styles.subHeader}>Ready for your next adventure?</Text>
 
+      {/* Categories */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={{ marginTop: 25 }}
+        style={{ marginVertical: 20 }}
+      >
+        {categories.map((cat, i) => (
+          <TouchableOpacity key={i} style={styles.chip}>
+            <Text style={styles.chipText}>
+              {cat.emoji} {cat.name}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {/* Featured Destinations */}
+      <Text style={styles.sectionTitle}>Featured</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginBottom: 15 }}
       >
         {destinations.map((dest, idx) => (
           <View key={idx} style={styles.card}>
@@ -40,44 +72,25 @@ export default function ExploreScreen() {
             <View style={{ padding: 12 }}>
               <Text style={styles.cardTitle}>{dest.name}</Text>
               <Text style={styles.cardDesc}>{dest.desc}</Text>
+              <TouchableOpacity style={styles.addBtn}>
+                <Text style={styles.addBtnText}>Add to Plan</Text>
+              </TouchableOpacity>
             </View>
           </View>
         ))}
       </ScrollView>
-      {/* Add categories, "Hidden Gems", etc. here */}
+
+      {/* Hidden Gems (could be a second scroll, more cards, etc.) */}
+      <Text style={styles.sectionTitle}>Hidden Gems for You</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {[...destinations].reverse().map((dest, idx) => (
+          <View key={idx} style={styles.cardSmall}>
+            <Image source={{ uri: dest.image }} style={styles.cardImageSmall} />
+            <Text style={styles.cardTitleSmall}>{dest.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <View style={{ height: 60 }} />
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 50,
-    paddingHorizontal: 18,
-  },
-  header: {
-    fontSize: 28,
-    fontWeight: "700",
-    marginBottom: 4,
-    color: "#1a1a1a",
-  },
-  subHeader: { fontSize: 17, color: "#636363", marginBottom: 14 },
-  card: {
-    width: 220,
-    marginRight: 16,
-    borderRadius: 22,
-    backgroundColor: "#f8f8f8",
-    overflow: "hidden",
-    shadowColor: ACCENT_COLOR,
-    shadowOpacity: 0.07,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  cardImage: {
-    height: 130,
-    width: "100%",
-  },
-  cardTitle: { fontSize: 18, fontWeight: "bold", color: "#222" },
-  cardDesc: { fontSize: 14, color: "#6C63FF", marginTop: 2 },
-});
