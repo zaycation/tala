@@ -30,7 +30,6 @@ export default StyleSheet.create({
     marginVertical: 8,
     fontFamily: typography.FONT_FAMILY,
   },
-
   chip: {
     backgroundColor: colors.CHIP_BG,
     borderRadius: spacing.CHIP_RADIUS,
@@ -46,7 +45,6 @@ export default StyleSheet.create({
     fontWeight: "500",
     fontFamily: typography.FONT_FAMILY,
   },
-
   card: {
     width: 220,
     marginRight: 18,
@@ -55,7 +53,10 @@ export default StyleSheet.create({
     overflow: "hidden",
     elevation: 2,
   },
-  cardImage: { height: 120, width: "100%" },
+  cardImage: {
+    height: 120,
+    width: "100%",
+  },
   cardTitle: {
     fontSize: 18,
     fontWeight: "bold",
@@ -83,7 +84,6 @@ export default StyleSheet.create({
     fontWeight: "600",
     fontFamily: typography.FONT_FAMILY,
   },
-
   cardSmall: {
     width: 110,
     marginRight: 12,
@@ -93,13 +93,69 @@ export default StyleSheet.create({
     elevation: 1,
     alignItems: "center",
   },
-  cardImageSmall: { height: 64, width: "100%" },
+  cardImageSmall: {
+    height: 64,
+    width: "100%",
+  },
   cardTitleSmall: {
     fontSize: 13,
     fontWeight: "600",
     color: colors.ACCENT,
     textAlign: "center",
     marginVertical: 5,
+    fontFamily: typography.FONT_FAMILY,
+  },
+  // New styles for banner, AI button, social proof
+  banner: {
+    backgroundColor: colors.CHIP_BORDER,
+    borderRadius: 20,
+    padding: 18,
+    marginBottom: 14,
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  bannerText: {
+    fontSize: 15,
+    color: "#4d4d4d",
+    fontWeight: "500",
+    flex: 1,
+    fontFamily: typography.FONT_FAMILY,
+  },
+  bannerBtn: {
+    backgroundColor: colors.ACCENT,
+    borderRadius: 20,
+    paddingVertical: 8,
+    paddingHorizontal: 18,
+    marginLeft: 16,
+  },
+  bannerBtnText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 15,
+    fontFamily: typography.FONT_FAMILY,
+  },
+  aiBtn: {
+    backgroundColor: colors.CARD,
+    borderRadius: 16,
+    paddingVertical: 14,
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 8,
+    elevation: 1,
+  },
+  aiBtnText: {
+    color: colors.ACCENT,
+    fontWeight: "700",
+    fontSize: 16,
+    fontFamily: typography.FONT_FAMILY,
+  },
+  socialProof: {
+    textAlign: "center",
+    marginTop: 8,
+    color: "#8685EF",
+    fontWeight: "500",
+    fontSize: 14,
     fontFamily: typography.FONT_FAMILY,
   },
 });
