@@ -4,10 +4,11 @@ export default (theme: typeof import("../theme/colors").light) =>
   StyleSheet.create({
     container: {
       paddingHorizontal: 18,
-      paddingTop: 28, // Less padding here, since SafeAreaView handles the notch!
+      paddingTop: 24,
+      paddingBottom: 18,
       flexGrow: 1,
+      backgroundColor: theme.BACKGROUND,
     },
-
     header: {
       fontSize: 26,
       fontWeight: "700",

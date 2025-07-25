@@ -1,10 +1,10 @@
+import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
-import { Tabs } from "expo-router";
-import { useState } from "react";
 import { useColorScheme } from "react-native";
+import { AuthProvider, useAuth } from "../context/AuthContext";
+import LoginScreen from "../screens/LoginScreen";
 import * as colors from "../theme/colors";
-import LoginScreen from "../screens/LoginScreen"; // or ../screens/LoginScreen
 
 const ICONS: Record<string, string> = {
   index: "compass-outline",
@@ -12,23 +12,9 @@ const ICONS: Record<string, string> = {
   profile: "person-outline",
 };
 
-export default function AppLayout() {
-  const [fontsLoaded] = useFonts({
-    Inter: require("../assets/fonts/InterVariable.ttf"),
-  });
-
+function MainTabs() {
   const scheme = useColorScheme();
   const theme = scheme === "dark" ? colors.dark : colors.light;
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  if (!fontsLoaded) return null;
-
-  if (!loggedIn) {
-    return <LoginScreen onLogin={() => setLoggedIn(true)} />;
-  }
-
-  if (!fontsLoaded) return null;
 
   return (
     <Tabs
@@ -50,7 +36,7 @@ export default function AppLayout() {
         },
         tabBarIcon: ({ color, size, focused }) => {
           let iconName = ICONS[route.name];
-          if (route.name === "explore" && focused) iconName = "compass";
+          if (route.name === "index" && focused) iconName = "compass";
           if (route.name === "plan" && focused) iconName = "calendar";
           if (route.name === "profile" && focused) iconName = "person";
           return (
@@ -68,4 +54,24 @@ export default function AppLayout() {
       <Tabs.Screen name="profile" options={{ title: "Profile" }} />
     </Tabs>
   );
+}
+
+export default function AppLayout() {
+  const [fontsLoaded] = useFonts({
+    Inter: require("../assets/fonts/InterVariable.ttf"),
+  });
+
+  if (!fontsLoaded) return null;
+
+  return (
+    <AuthProvider>
+      <AuthGate />
+    </AuthProvider>
+  );
+}
+
+// AuthGate component for clean auth logic
+function AuthGate() {
+  const { loggedIn, login } = useAuth();
+  return loggedIn ? <MainTabs /> : <LoginScreen onLogin={login} />;
 }

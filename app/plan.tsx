@@ -1,11 +1,12 @@
+import React from "react";
 import {
+  SafeAreaView,
+  ScrollView,
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   useColorScheme,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import * as colors from "../theme/colors";
 import getStyles from "../styles/plan.styles";
 
@@ -14,7 +15,6 @@ export default function PlanScreen() {
   const theme = scheme === "dark" ? colors.dark : colors.light;
   const styles = getStyles(theme);
 
-  // Example data
   const trips = [
     { name: "Kyoto, Japan", desc: "Cherry Blossom Trip • Mar 24 - Mar 30" },
     { name: "Oaxaca, Mexico", desc: "Day of the Dead • Nov 1 - Nov 5" },
@@ -33,6 +33,7 @@ export default function PlanScreen() {
             <Text style={styles.cardText}>{trip.desc}</Text>
           </View>
         ))}
+
         <TouchableOpacity style={styles.aiButton}>
           <Text style={styles.aiButtonText}>+ Start New AI Trip Plan</Text>
         </TouchableOpacity>

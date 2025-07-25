@@ -1,11 +1,12 @@
+import React from "react";
 import {
+  SafeAreaView,
+  ScrollView,
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   useColorScheme,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import * as colors from "../theme/colors";
 import getStyles from "../styles/profile.styles";
 
@@ -14,7 +15,6 @@ export default function ProfileScreen() {
   const theme = scheme === "dark" ? colors.dark : colors.light;
   const styles = getStyles(theme);
 
-  // Example data
   const pastTrips = [
     { name: "Split, Croatia", desc: "Sailing Getaway • Aug 2024" },
     { name: "New York", desc: "City Lights • Dec 2023" },
