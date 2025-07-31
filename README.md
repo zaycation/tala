@@ -1,50 +1,124 @@
-# Welcome to your Expo app 👋
+# 📱 Tala — AI-Powered Travel Assistant
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Tala** is a cross-platform travel app built with Expo, React Native, and Supabase.  
+Discover curated destinations, plan your adventures, and keep track of your travel history — all in a clean, Gen Z-inspired interface.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- Explore trending, personalized, and “hidden gem” destinations
+- Smart AI travel search (Airbnb-inspired)
+- Multi-tab navigation: Explore, Plan, Profile
+- Light/dark mode with custom theming
+- Modern UI with Inter font and custom icons
+- Secure login system (email auth, Supabase ready)
+- Responsive design: web, iOS, and Android
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Tech Stack
 
-In the output, you'll find options to open the app in a
+- **React Native + Expo** (cross-platform app)
+- **Expo Router** (file-based navigation & tabs)
+- **TypeScript** (typed everywhere)
+- **Supabase** (auth, data, Postgres backend)
+- **Custom theming** (`/theme`)
+- **Screen-based styles** (`/styles`)
+- **Inter font** via `expo-font`
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🚀 Getting Started
 
-## Get a fresh project
+1. **Clone the repo**
+    ```sh
+    git clone https://github.com/zaycation/tala.git
+    cd tala
+    ```
 
-When you're ready, run:
+2. **Install dependencies**
+    ```sh
+    npm install
+    ```
 
-```bash
-npm run reset-project
+3. **Add your environment variables**
+
+    Copy `.env.example` to `.env` and fill in your Supabase keys.
+
+4. **Start the Expo server**
+    ```sh
+    npm start
+    # or
+    npx expo start
+    ```
+    - **Web:** open in browser
+    - **iOS/Android:** scan QR code in Expo Go or open in simulator
+
+---
+
+## 🗂️ Project Structure
+
+```
+tala/
+├── app/
+│   ├── _layout.tsx          # Tab navigation & Auth gate
+│   ├── index.tsx            # Explore tab
+│   ├── plan.tsx             # Plan tab
+│   ├── profile.tsx          # Profile tab
+│   └── screens/
+│       └── LoginScreen.tsx  # Login (not a tab)
+├── styles/                  # All styles split per screen
+│   ├── explore.styles.ts
+│   ├── plan.styles.ts
+│   ├── profile.styles.ts
+│   └── login.styles.ts
+├── theme/
+│   └── colors.ts            # Central colors, etc
+├── context/
+│   └── AuthContext.tsx      # Auth logic (login, logout, state)
+├── assets/
+│   └── fonts/
+│       └── InterVariable.ttf
+├── lib/
+│   └── supabase.ts          # Supabase client
+├── .env                     # (You add this with your Supabase keys)
+└── README.md
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 📝 Development Notes
 
-## Learn more
+- **Tabs auto-sync with files in `/app`**  
+  (`index.tsx`, `plan.tsx`, `profile.tsx` = Explore, Plan, Profile tabs)
+- **Auth gate is in _layout.tsx**  
+  (Shows LoginScreen if not logged in, otherwise MainTabs)
+- **All styling should be in `/styles` and `/theme`**  
+  (No inline styles in components!)
+- **Uses Unsplash URLs for mock images**
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## ⚡ Next Steps
 
-## Join the community
+- [ ] Connect Supabase auth (email, social, etc)
+- [ ] CRUD for trips & user plans
+- [ ] Refine Explore screen with live data & recommendations
+- [ ] Deploy web version
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🧑🏾‍💻 Contributing
+
+PRs welcome! Please open an issue or discussion first if you’re proposing a major change.
+
+---
+
+## 📜 License
+
+MIT
+
+---
+
+## 👤 Author
+
+[@zaycation](https://github.com/zaycation)
