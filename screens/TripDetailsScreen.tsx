@@ -10,19 +10,13 @@ import { supabase } from "../lib/supabase";
 import getStyles from "../styles/tripDetails.styles";
 import * as colors from "../theme/colors";
 
-type TripDetailsScreenProps = {
+type Props = {
   tripId: string;
-  onEditTrip: (trip: any) => void;
   onClose: () => void;
 };
 
-export default function TripDetailsScreen({
-  tripId,
-  onEditTrip,
-  onClose,
-}: TripDetailsScreenProps) {
+export default function TripDetailsScreen({ tripId, onClose }: Props) {
   const styles = getStyles();
-
   const [trip, setTrip] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -70,29 +64,20 @@ export default function TripDetailsScreen({
   if (!trip) return <Text style={styles.errorText}>Trip not found.</Text>;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.modalCard}>
       <Text style={styles.title}>{trip.destination}</Text>
       <Text style={styles.dates}>
         {trip.start_date} → {trip.end_date}
       </Text>
       <Text style={styles.notes}>{trip.notes}</Text>
       <View style={styles.actions}>
-        <TouchableOpacity
-          style={styles.editBtn}
-          onPress={() => onEditTrip(trip)}
-        >
-          <Text style={styles.editBtnText}>Edit</Text>
-        </TouchableOpacity>
+        {/* Placeholder for Edit */}
+        {/* <TouchableOpacity style={styles.editBtn}><Text style={styles.editBtnText}>Edit</Text></TouchableOpacity> */}
         <TouchableOpacity style={styles.deleteBtn} onPress={onDelete}>
           <Text style={styles.deleteBtnText}>Delete</Text>
         </TouchableOpacity>
-      </View>
-      <View style={{ marginTop: 24 }}>
-        <TouchableOpacity style={styles.inviteBtn}>
-          <Text style={styles.inviteBtnText}>Invite Friends (coming soon)</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.shareBtn}>
-          <Text style={styles.shareBtnText}>Share Trip (coming soon)</Text>
+        <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
+          <Text style={styles.closeBtnText}>Close</Text>
         </TouchableOpacity>
       </View>
     </View>
