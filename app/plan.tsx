@@ -15,6 +15,7 @@ import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
 import getStyles from "../styles/plan.styles";
 import * as colors from "../theme/colors";
+import TripDetailsScreen from "../screens/TripDetailsScreen";
 
 type Trip = {
   id: string;
@@ -41,6 +42,10 @@ export default function PlanScreen() {
     notes: "",
   });
   const [adding, setAdding] = useState(false);
+
+  // Details modal state
+  const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     fetchTrips();
@@ -134,7 +139,15 @@ export default function PlanScreen() {
           </Text>
         ) : (
           trips.map((trip) => (
-            <View key={trip.id} style={styles.card}>
+            <TouchableOpacity
+              key={trip.id}
+              style={styles.card}
+              activeOpacity={0.85}
+              onPress={() => {
+                setSelectedTrip(trip);
+                setShowDetails(true);
+              }}
+            >
               <Text style={styles.cardTitle}>{trip.destination}</Text>
               <Text style={styles.cardText}>
                 {trip.start_date} — {trip.end_date}
@@ -142,7 +155,7 @@ export default function PlanScreen() {
               {trip.notes ? (
                 <Text style={styles.cardNotes}>{trip.notes}</Text>
               ) : null}
-            </View>
+            </TouchableOpacity>
           ))
         )}
 
@@ -236,6 +249,25 @@ export default function PlanScreen() {
                   </Text>
                 </TouchableOpacity>
               </View>
+            </View>
+          </View>
+        </Modal>
+
+        {/* Trip Details Modal */}
+        <Modal
+          visible={showDetails}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => setShowDetails(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              {selectedTrip && (
+                <TripDetailsScreen
+                  tripId={selectedTrip.id}
+                  onClose={() => setShowDetails(false)}
+                />
+              )}
             </View>
           </View>
         </Modal>
