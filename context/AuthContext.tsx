@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type AuthContextType = {
   loggedIn: boolean;
-  login: () => void;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 };
 
@@ -11,7 +11,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const login = () => setLoggedIn(true);
+  const login = async (email: string, password: string) => {
+    // TODO: Add real auth logic here
+    setLoggedIn(true);
+  };
+
   const logout = () => setLoggedIn(false);
 
   return (

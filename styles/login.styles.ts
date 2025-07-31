@@ -36,4 +36,17 @@ export default (theme: typeof import("../theme/colors").light) =>
       fontWeight: "700",
       fontFamily: "Inter",
     },
+    input: {
+      width: "100%",
+      height: 44,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: theme.CHIP_BORDER,
+      backgroundColor: theme.CARD,
+      paddingHorizontal: 16,
+      fontSize: 16,
+      fontFamily: "Inter",
+      marginBottom: 16,
+      color: theme.TEXT,
+    },
   });
