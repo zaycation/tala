@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  ActivityIndicator,
   useColorScheme,
 } from "react-native";
 import * as colors from "../theme/colors";
@@ -20,6 +21,20 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSignIn = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await onLogin(email, password);
+      // Success: AuthGate will swap screens for you!
+    } catch (err: any) {
+      setError(err.message || "Login failed. Please try again.");
+    }
+    setLoading(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -43,11 +58,29 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         secureTextEntry
       />
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => onLogin(email, password)}
+        style={[styles.button, loading && { opacity: 0.6 }]}
+        onPress={handleSignIn}
+        disabled={loading}
       >
-        <Text style={styles.buttonText}>Sign In</Text>
+        {loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Sign In</Text>
+        )}
       </TouchableOpacity>
+      {error && (
+        <Text
+          style={{
+            color: "#ff375f",
+            marginTop: 14,
+            fontFamily: "Inter",
+            fontWeight: "600",
+            textAlign: "center",
+          }}
+        >
+          {error}
+        </Text>
+      )}
     </View>
   );
 }
