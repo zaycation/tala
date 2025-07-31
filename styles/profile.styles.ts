@@ -1,69 +1,59 @@
 import { StyleSheet } from "react-native";
+import * as colors from "../theme/colors";
 
-export default (theme: typeof import("../theme/colors").light) =>
-  StyleSheet.create({
+export default function getStyles(theme = colors.light) {
+  return StyleSheet.create({
     container: {
-      paddingHorizontal: 18,
-      paddingTop: 24,
-      paddingBottom: 18,
-      flexGrow: 1,
+      flex: 1,
+      padding: 24,
       backgroundColor: theme.BACKGROUND,
     },
-    header: {
-      fontSize: 26,
+    title: {
+      fontSize: 28,
       fontWeight: "700",
       color: theme.TEXT,
+      marginBottom: 4,
       fontFamily: "Inter",
-      marginBottom: 8,
     },
-    subHeader: {
-      fontSize: 16,
+    email: {
       color: theme.SUBTEXT,
-      fontFamily: "Inter",
-      marginBottom: 18,
-    },
-    card: {
-      backgroundColor: theme.CARD,
-      borderRadius: 18,
-      padding: 18,
-      marginBottom: 16,
-      shadowColor: "#000",
-      shadowOpacity: 0.06,
-      shadowRadius: 8,
-      elevation: 1,
-    },
-    cardTitle: {
-      fontSize: 17,
-      fontWeight: "600",
-      color: theme.ACCENT,
-      fontFamily: "Inter",
-      marginBottom: 3,
-    },
-    cardText: {
-      fontSize: 14,
-      color: theme.TEXT,
-      fontFamily: "Inter",
+      marginBottom: 24,
     },
     sectionTitle: {
-      fontSize: 16,
-      color: theme.SUBTEXT,
+      fontSize: 18,
       fontWeight: "600",
+      marginBottom: 12,
+      color: theme.TEXT,
       fontFamily: "Inter",
-      marginVertical: 8,
     },
-    settingsBtn: {
+    tripItem: {
+      marginBottom: 14,
+      padding: 14,
       backgroundColor: theme.CARD,
-      borderRadius: 16,
-      padding: 12,
-      alignItems: "center",
-      marginTop: 12,
-      borderWidth: 1,
-      borderColor: theme.CHIP_BORDER,
+      borderRadius: 8,
     },
-    settingsBtnText: {
-      color: theme.ACCENT,
-      fontFamily: "Inter",
+    tripTitle: {
       fontWeight: "700",
-      fontSize: 15,
+      fontSize: 16,
+      color: theme.TEXT,
+    },
+    tripDates: {
+      color: theme.SUBTEXT,
+    },
+    empty: {
+      color: theme.SUBTEXT,
+      marginTop: 16,
+    },
+    logoutBtn: {
+      marginTop: 28,
+      padding: 14,
+      backgroundColor: theme.ACCENT,
+      borderRadius: 8,
+    },
+    logoutText: {
+      color: "#fff",
+      fontWeight: "600",
+      textAlign: "center",
     },
   });
+}

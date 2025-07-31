@@ -60,12 +60,35 @@ export default function PlanScreen() {
     else setTrips(data || []);
     setLoading(false);
   }
+  function isValidDateString(date: string) {
+    // Simple YYYY-MM-DD validation
+    const [year, month, day] = date.split("-").map(Number);
+    if (!year || !month || !day) return false;
+    const d = new Date(date);
+    return (
+      d instanceof Date &&
+      !isNaN(d.getTime()) &&
+      d.getUTCFullYear() === year &&
+      d.getUTCMonth() + 1 === month &&
+      d.getUTCDate() === day
+    );
+  }
 
   async function handleAddTrip() {
     if (!form.destination || !form.start_date || !form.end_date) {
       setError("Please fill in all required fields.");
       return;
     }
+    // Validate dates before trying to save
+    if (!isValidDateString(form.start_date)) {
+      setError("Start date is not valid (YYYY-MM-DD).");
+      return;
+    }
+    if (!isValidDateString(form.end_date)) {
+      setError("End date is not valid (YYYY-MM-DD).");
+      return;
+    }
+
     setAdding(true);
     setError(null);
     const { error } = await supabase.from("trips").insert([
@@ -117,9 +140,7 @@ export default function PlanScreen() {
               <Text style={styles.cardText}>
                 {trip.start_date} — {trip.end_date}
               </Text>
-              {!!trip.notes && (
-                <Text style={styles.cardNotes}>{trip.notes}</Text>
-              )}
+              {trip.notes && <Text style={styles.cardNotes}>{trip.notes}</Text>}
             </View>
           ))
         )}
