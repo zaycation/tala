@@ -246,11 +246,15 @@ export default (theme = colors.light) =>
       fontFamily: "Inter",
       marginBottom: 2,
     },
-
     tripDates: {
       fontSize: 14,
       color: theme.SUBTEXT,
       fontFamily: "Inter",
       marginBottom: 6,
+    },
+    tripNotes: {
+      fontSize: 13,
+      color: theme.SUBTEXT,
+      fontStyle: "italic",
     },
   });

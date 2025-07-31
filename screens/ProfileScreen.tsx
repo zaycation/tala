@@ -3,32 +3,27 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import getStyles from "../styles/profile.styles";
-import * as colors from "../theme/colors";
 
 export default function ProfileScreen() {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const styles = getStyles();
 
-  const [userEmail, setUserEmail] = useState<string | null>(null);
   const [trips, setTrips] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const user = supabase.auth.user();
-      setUserEmail(user?.email || null);
-    };
-    fetchUser();
+    if (!user) return; // Don't run if user is not logged in
 
     supabase
       .from("trips")
       .select("*")
+      .eq("user_id", user.id)
       .then(({ data }) => setTrips(data || []));
-  }, []);
+  }, [user]);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Profile</Text>
-      <Text style={styles.email}>{userEmail}</Text>
+      <Text style={styles.email}>{user?.email ?? "Not logged in"}</Text>
       <Text style={styles.sectionTitle}>Your Trips</Text>
       <FlatList
         data={trips}

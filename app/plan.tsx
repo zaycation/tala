@@ -60,8 +60,8 @@ export default function PlanScreen() {
     else setTrips(data || []);
     setLoading(false);
   }
+
   function isValidDateString(date: string) {
-    // Simple YYYY-MM-DD validation
     const [year, month, day] = date.split("-").map(Number);
     if (!year || !month || !day) return false;
     const d = new Date(date);
@@ -79,7 +79,6 @@ export default function PlanScreen() {
       setError("Please fill in all required fields.");
       return;
     }
-    // Validate dates before trying to save
     if (!isValidDateString(form.start_date)) {
       setError("Start date is not valid (YYYY-MM-DD).");
       return;
@@ -140,7 +139,9 @@ export default function PlanScreen() {
               <Text style={styles.cardText}>
                 {trip.start_date} — {trip.end_date}
               </Text>
-              {trip.notes && <Text style={styles.cardNotes}>{trip.notes}</Text>}
+              {trip.notes ? (
+                <Text style={styles.cardNotes}>{trip.notes}</Text>
+              ) : null}
             </View>
           ))
         )}

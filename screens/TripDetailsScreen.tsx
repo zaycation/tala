@@ -6,16 +6,22 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
 import getStyles from "../styles/tripDetails.styles";
 import * as colors from "../theme/colors";
 
-export default function TripDetailsScreen() {
-  const route = useRoute();
-  const navigation = useNavigation();
+type TripDetailsScreenProps = {
+  tripId: string;
+  onEditTrip: (trip: any) => void;
+  onClose: () => void;
+};
+
+export default function TripDetailsScreen({
+  tripId,
+  onEditTrip,
+  onClose,
+}: TripDetailsScreenProps) {
   const styles = getStyles();
-  const { tripId } = route.params as { tripId: string };
 
   const [trip, setTrip] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +52,7 @@ export default function TripDetailsScreen() {
             .from("trips")
             .delete()
             .eq("id", tripId);
-          if (!error) navigation.goBack();
+          if (!error) onClose();
           else Alert.alert("Delete failed", error.message);
         },
       },
@@ -73,7 +79,7 @@ export default function TripDetailsScreen() {
       <View style={styles.actions}>
         <TouchableOpacity
           style={styles.editBtn}
-          onPress={() => navigation.navigate("EditTrip", { trip })}
+          onPress={() => onEditTrip(trip)}
         >
           <Text style={styles.editBtnText}>Edit</Text>
         </TouchableOpacity>

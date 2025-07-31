@@ -8,11 +8,13 @@ import React, {
 import { supabase } from "../lib/supabase";
 import { Session } from "@supabase/supabase-js";
 
+type UserType = { id: string; email: string | null };
+
 type AuthContextType = {
   loggedIn: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  user: null | { id: string; email: string };
+  user: UserType | null;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -54,12 +56,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loggedIn: !!session?.user,
     login,
     logout,
-    user: session?.user
-      ? { id: session.user.id, email: session.user.email! }
+    user: session?.user?.id
+      ? { id: session.user.id, email: session.user.email ?? "" }
       : null,
   };
 
-  if (loading) return null; // Maybe splash/loading screen here
+  if (loading) return null; // Optionally show a splash/loading screen
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
